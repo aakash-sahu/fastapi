@@ -35,3 +35,10 @@ def get_posts():
     return posts
 
 # fastapi automatically converts to json
+
+@app.get("/api/posts/{post_id}")
+def get_post(post_id: int): #fast api uses this type hint to validate the input
+    for post in posts:
+        if post.get("id") == post_id:
+            return post
+    return {"error": "Post not found"}
